@@ -1,10 +1,11 @@
-const { json } = require("sequelize");
 
 const createTaskFormHandler = async (event) => {
-    Event.preventDefault();
+    event.preventDefault();
 
     const taskname = document.querySelector('#task-name').value.trim();
-    const taskdetails = document.querySelector('task-details').value.trim();
+    const taskdetails = document.querySelector('#task-details').value.trim();
+    var body=JSON.stringify({taskname, taskdetails})
+    console.log (body)
 
     if(taskname && taskdetails){
         const response = await fetch ('/api/tasks',{

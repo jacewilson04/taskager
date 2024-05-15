@@ -1,0 +1,23 @@
+{{#section 'scripts'}}
+<script src="/js/updateTask.js"></script>
+{{/section}}
+
+
+{{#content 'body'}}
+<div class="container">
+    <h2>update Task</h2>
+    <form id="update-task-form" class="form">
+        <label for="task-name">task Name:</label>
+        <input class="form-input" type="text" id="task-name" required />
+        <div>
+            <div class="form-group">
+                <label for="task-detail"> Task Details: </label>
+                <textarea class="form-input" id="task-details"></textarea>
+            </div>
+            <div>
+                <button class="btn btn-primary" type="submit"> update Task </button>
+                </div>
+    </form>
+</div>
+
+{{/content}}
