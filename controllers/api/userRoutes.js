@@ -29,6 +29,7 @@ router.post('/login', async (req, res) => {
     });
 
   } catch (err) {
+    console.log(err);
     res.status(400).json(err);
   }
 });
@@ -40,6 +41,22 @@ router.post('/logout', (req, res) => {
     });
   } else {
     res.status(404).end();
+  }
+});
+
+router.get("/getuserids", async(req, res) => {
+  console.log("Retriving users ids")
+
+  try {
+      // Return all of the users tasks
+      let queriedUserIds = await User.findAll({
+          attributes: ["id"],
+      })
+
+      res.status(200).json(queriedUserIds)
+  } catch (err) {
+      console.log(err)
+      res.status(400).end();
   }
 });
 
