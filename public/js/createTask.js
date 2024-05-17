@@ -8,7 +8,7 @@ const createTaskFormHandler = async (event) => {
     console.log (body)
 
     if(taskname && taskdetails){
-        const response = await fetch ('/api/tasks',{
+        const response = await fetch ('/api/tasks/create',{
             method: 'post', 
             body: JSON.stringify({taskname, taskdetails}),
             headers: {'content-type': 'applicaiton/json'},
