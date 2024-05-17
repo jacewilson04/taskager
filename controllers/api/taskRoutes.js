@@ -1,8 +1,6 @@
 const router = require('express').Router();
 const { Task } = require('../../models');
 
-// TODO! question for robert ask why the get tasks isn't working
-
 // The middleware for our task api calls
 router.use('/*', (req, res, next) => {
     console.log('new request')
@@ -10,7 +8,7 @@ router.use('/*', (req, res, next) => {
     // If user is not logged in bad request
     if (!req.session.logged_in) {
         console.log("User is not logged in failing")
-        res.status(400).end();
+        res.status(400).json("Log in please");
         return
     };
     
@@ -66,6 +64,8 @@ router.post('/update', async (req, res) => {
     let user_id = req.session.user_id;
     let taskId;
 
+    // TODO! Add proper details for updating a task!
+
     try {
         // Update task data
         await Task.update(
@@ -94,9 +94,12 @@ router.get('/getall', async (req, res) => {
 
     let user_id = req.session.user_id;
 
+
+    // TODO! The get task isn't working
+
     try {
         // Return all of the users tasks
-        let queriedTasks = Task.findAll({
+        let queriedTasks = await Task.findAll({
             where: {
                 user_id,
             },
