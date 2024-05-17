@@ -29,6 +29,7 @@ router.post('/login', async (req, res) => {
     });
 
   } catch (err) {
+    console.log(err);
     res.status(400).json(err);
   }
 });
@@ -57,5 +58,21 @@ router.post('/create', async (req, res) => {
   res.status(404).end();
 }
 });
-module.exports = router;
 
+router.get("/getuserids", async(req, res) => {
+  console.log("Retriving users ids")
+
+  try {
+      // Return all of the users tasks
+      let queriedUserIds = await User.findAll({
+          attributes: ["id"],
+      })
+
+      res.status(200).json(queriedUserIds)
+  } catch (err) {
+      console.log(err)
+      res.status(400).end();
+  }
+});
+
+module.exports = router;
