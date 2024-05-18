@@ -1,17 +1,15 @@
 
-const createTaskFormHandler = async (event) => {
+document.getElementById('create-task-form').addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    const taskname = document.querySelector('#task-name').value.trim();
-    const taskdetails = document.querySelector('#task-details').value.trim();
-    var body=JSON.stringify({taskname, taskdetails})
-    console.log (body)
+    const name = document.getElementById('task-name').value.trim();
+    const details = document.getElementById('task-details').value.trim();
 
-    if(taskname && taskdetails){
-        const response = await fetch ('/api/tasks/create',{
-            method: 'post', 
-            body: JSON.stringify({taskname, taskdetails}),
-            headers: {'content-type': 'applicaiton/json'},
+    if(name){
+        const response = await fetch ('/create-task/save',{
+            method: 'POST', 
+            body: JSON.stringify({name, details}),
+            headers: {'Content-Type': 'application/json'},
         });
 
         if (response.ok){
@@ -22,6 +20,4 @@ const createTaskFormHandler = async (event) => {
         }
    
     }
-};
-
-document.querySelector('#create-task-form').addEventListener('submit', createTaskFormHandler);
+});

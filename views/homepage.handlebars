@@ -1,4 +1,5 @@
-{{#each users as |user| }}
+
+{{!-- {{#each users as |user| }}
 <div class="row align-center mb-5">
   <div class="col-md-6">
     <h2>{{{get_emoji}}} {{user.name}}</h2>
@@ -7,5 +8,69 @@
     <h3><a href="mailto:{{user.email}}">{{user.email}}</a></h3>
   </div>
 </div>
-{{/each}}
+{{/each}} --}}
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> My Tasks </title>
+    <link rel="stylesheet" href="../../taskager-main/public/css/jass.css">
+</head>
+<body>
+    
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="sidebar">
+                <h3 class="sidebar-title">Menu</h3>
+                <ul class="menu-list">
+                    <li><a href="/create-task">Create Task</a></li>
+                    <li><a href="/">View Week</a></li>
+                    <li><a href="/">View Month</a></li>
+                    <li><a href="/">View Year</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <h2>My Tasks</h2>
+            <ul id="task-list" class="task-list">
+                {{#each tasks}}
+                <li  class="task-item" data-task-id="{{this.id}}">
+                    <h3 class="task-name">{{this.name}}</h3>
+                    <p class="task-details">{{this.details}}</p>
+                     <p class="task-date">{{this.date}}</p>
+                    <div class="btn-group">
+                        <button class="btn btn-danger delete-task-btn" data-task-id="{{this.id}}">Delete</button>
+                        <button class="btn btn-primary update-task-btn" data-task-id="{{this.id}}">Update</button>
+                    </div>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+document.querySelectorAll('.delete-task-btn').forEach(button  => {
+   button.addEventListener('click', async (event) => {
+        const taskId = event.target.getAttribute('data-task-id');
+        const response = await fetch (`/api/tasks/delete/${taskId}`,{
+            method: 'DELETE', 
+            headers: {'Content-Type': 'application/json'},
+        });
+
+        if (response.ok){
+            document.querySelector(`li[data-task-id="${taskId}"]`).remove();
+        }
+        else{
+            alert("failed to delete task");
+        }
+   });
+});
+</script>
+
+
+</html>

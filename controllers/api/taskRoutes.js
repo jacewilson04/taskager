@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const { Task } = require('../../models');
+const withAuth = require("../../utils/auth")
+
 
 // The middleware for our task api calls
 router.use('/*', (req, res, next) => {
@@ -37,26 +39,26 @@ router.post('/create', async (req, res) => {
 });
  
 // Deletes a task
-router.post('/delete', async (req, res) => {
-    console.log("Deleting a task")
-    let user_id = req.session.user_id;
-    let task_id;
+// router.post('/delete', async (req, res) => {
+//     console.log("Deleting a task")
+//     let user_id = req.session.user_id;
+//     let task_id;
 
-    try {
-        // Destroy task
-        await Task.destroy({
-            where: {
-                user_id,
-                task_id,
-            },
-        });
+//     try {
+//         // Destroy task
+//         await Task.destroy({
+//             where: {
+//                 user_id,
+//                 task_id,
+//             },
+//         });
 
-        res.status(200).end();
-    } catch (err) {
-        console.log(err)
-        res.status(400).end();
-    }
-});
+//         res.status(200).end();
+//     } catch (err) {
+//         console.log(err)
+//         res.status(400).end();
+//     }
+// });
 
 // Updates a prexisting task
 router.post('/update', async (req, res) => {
@@ -109,6 +111,33 @@ router.get('/getall', async (req, res) => {
     } catch (err) {
         console.log(err)
         res.status(400).end();
+    }
+});
+
+
+router.delete('/delete/:id', withAuth , async (req, res) => {
+    try {
+        
+        const taskId = req.params.id;
+        const userId = req.session.user_id;
+
+        const task = await Task.findOne({
+            where: {
+                id: taskId,
+                user_id : userId,
+            },
+        });
+
+        if(!task) {
+            res.status(404).json({message: 'Task not found or you dont have the permission to delete it.'});
+            return;
+        }
+        // Destroy task
+        await task.destroy();
+        res.status(200).json({message: 'Task deleted successfully'}); 
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({message: 'Internl server error'}); 
     }
 });
 

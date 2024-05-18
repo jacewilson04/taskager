@@ -1,22 +1,20 @@
 const router = require('express').Router();
-const { User } = require('../models');
+const { Task } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', withAuth, async (req, res) => {
   try {
-    const userData = await User.findAll({
-      attributes: { exclude: ['password'] },
-      order: [['name', 'ASC']],
-    });
-
-    const users = userData.map((project) => project.get({ plain: true }));
+    const user_id = req.session.user_id;
+    const tasks = await Task.findAll({where: {user_id}});
 
     res.render('homepage', {
-      users,
-      logged_in: req.session.logged_in,
+      tasks: tasks.map(task => task.get({plain: true})),
+      logged_in : req.session.logged_in,
     });
+
   } catch (err) {
-    res.status(500).json(err);
+    console.error(err)
+    res.status(500).json({error: 'Internal server error'});
   }
 });
 
