@@ -8,6 +8,7 @@ router.use('/api', apiRoutes);
 const createTaskRoutes=require('./createTaskRoutes');
 router.use('/create-task', createTaskRoutes);
 
-
+const upadteTaskRoutes = require('./updateTaskRoutes');
+router.use('/update-task', upadteTaskRoutes);
 
 module.exports = router;
