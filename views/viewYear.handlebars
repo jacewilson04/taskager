@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Tasks</title>
+    <title>View Week</title>
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
@@ -21,9 +21,9 @@
                 </div>
             </div>
             <div class="col-md-9">
-                <h2>My Tasks</h2>
+                <h2>Tasks This Year</h2>
                 <ul id="task-list" class="task-list">
-                    {{#each tasks}}
+                    {{#each yearTasks}}
                     <li class="task-item" data-task-id="{{this.id}}">
                         <h3 class="task-name">{{this.name}}</h3>
                         <p class="task-details">{{this.details}}</p>
