@@ -45,34 +45,25 @@ router.post('/logout', (req, res) => {
 });
 
 router.post('/create', async (req, res) => {
-  console.log("random")
+  console.log("Creating an user account!")
+
   try{
     const userData = await User.create({
-      name:req.body.name,
-      email:req.body.email,
-      password:req.body.password
+      email: req.body.email,
+      password: req.body.password
     });
-    res.json(userData)
+
+    // After the user creates their account make sure they are logged in!!
+    req.session.save(() => {
+      req.session.user_id = userData.id;
+      req.session.logged_in = true;
+      
+      res.json({ user: userData, message: 'You are now logged in!' });
+    });
 } catch (err) {
   console.log(err)
   res.status(404).end();
 }
-});
-
-router.get("/getuserids", async(req, res) => {
-  console.log("Retriving users ids")
-
-  try {
-      // Return all of the users tasks
-      let queriedUserIds = await User.findAll({
-          attributes: ["id"],
-      })
-
-      res.status(200).json(queriedUserIds)
-  } catch (err) {
-      console.log(err)
-      res.status(400).end();
-  }
 });
 
 module.exports = router;

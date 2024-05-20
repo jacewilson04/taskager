@@ -34,10 +34,14 @@ const loginFormHandler = async (event) => {
     if (response.ok) {
       document.location.replace('/');
     } else {
-      alert('Failed to log in');
+      alert('Failed to create account');
     }
   }
 }
 document
   .querySelector('.login-form')
   .addEventListener('submit', loginFormHandler);
+
+document
+  .querySelector('#create-new-account')
+  .addEventListener('click', createNewAccount);
