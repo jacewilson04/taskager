@@ -22,3 +22,6 @@ How to use project:
 ![Weekandmonthtasks](Screenshot%202024-05-19%20at%202.43.26%20PM.png)
 
 ![updatetask](Screenshot%202024-05-19%20at%202.44.57%20PM.png)
+
+## Deployed App
+https://taskager-85201f89ce86.herokuapp.com/
