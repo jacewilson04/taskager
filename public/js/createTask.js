@@ -3,7 +3,7 @@ document.getElementById('create-task-form').addEventListener('submit', async (ev
 
     const name = document.getElementById('task-name').value.trim();
     const details = document.getElementById('task-details').value.trim();
-    const date = document.getElementById('task-due').value;
+    const date = document.getElementById('task-date').value;
 
     if (name && details && date) {
         const response = await fetch('/create-task/save', {
