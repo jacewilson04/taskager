@@ -1,13 +1,7 @@
-# taskager
-How to use project:
-1. Enter MySql ```mysql -u root -p``` and enter your password.
-2. Create the database ```source db/schema.sql```
-3. Exit MySql
-4. Add your node packages ```npm install```
-5. Don't forget to edit your .env with your password that you set.
-6. Seed data into MySql ```npm run seed```
-7. Start the server ```npm start```
+# Taskager
 
+## Description
+Task management app to organize and keep track of daily tasks and activities. 
 
 ## Functionalities of the task manager
 1. Week, Month and Yearly task view.
@@ -15,13 +9,17 @@ How to use project:
 3. Deletig and updating funcationalities.
 4. Log In & Log out for a user.
 
-![userregistery](./Screenshot%202024-05-19%20at%202.42.08%20PM.png)
+## Technologies used
+Handlebars, MySql, Express, Bcrypt, Sequelize
 
-![login](Screenshot%202024-05-19%20at%202.42.26%20PM.png)
+## Screenshots
+<img src="./Screenshot%202024-05-19%20at%202.42.08%20PM.png" alt="Create Task Image" width="500"/>
 
-![Weekandmonthtasks](Screenshot%202024-05-19%20at%202.43.26%20PM.png)
+<img src="Screenshot%202024-05-19%20at%202.42.26%20PM.png" alt="Login" width="500"/>
 
-![updatetask](Screenshot%202024-05-19%20at%202.44.57%20PM.png)
+<img src="Screenshot%202024-05-19%20at%202.43.26%20PM.png" alt="Task View Image" width="500"/>
+
+<img src="Screenshot%202024-05-19%20at%202.44.57%20PM.png" alt="Task View Image" width="500"/>
 
 ## Deployed App
 https://taskager-85201f89ce86.herokuapp.com/
