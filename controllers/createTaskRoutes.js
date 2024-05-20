@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Task } = require('../models');
 
 router.get('/', (req, res) => {
-    res.render('createTask');
+    res.render('createtask');
 });
 
 router.post('/save', async(req, res)=> {
