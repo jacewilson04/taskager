@@ -129,6 +129,11 @@ body {
   height: 100%; /* Occupy full height */
   width: 250px; /* Set the width of the sidebar */
   z-index: 1000; /* Ensure it's above other content */
+  transition: left 0.3s ease;
+}
+
+.sidebar.close {
+  left: -250px;
 }
 
 .sidebar-title {
@@ -221,6 +226,16 @@ body {
 h1 {
   font-size: 2em;
   margin: 0.67em 0;
+}
+
+#toggleButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
 }
 
 /* Grouping content

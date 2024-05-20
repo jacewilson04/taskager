@@ -3,12 +3,13 @@ const updateTaskFormHandler = async (event) =>{
 
     const taskname = document.querySelector('#task-name').value.trim();
     const taskdetails = document.querySelector('#task-details').value.trim();
+    const taskdue = document.querySelector('#task-due').value();
 
-    if(taskname && taskdetails){
+    if(taskname && taskdetails && taskdue){
         const taskId = window.location.pathname.split('/').pop();
         const response = await fetch(`/api/tasks/${taskId}`, {
             method: 'PUT',
-            body: JSON.stringify({taskname, taskdetails}),
+            body: JSON.stringify({taskname, taskdetails, taskdue}),
             headers: {'Content-Type' : 'application/json'},
         });
 

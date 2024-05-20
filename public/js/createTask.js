@@ -3,11 +3,12 @@ document.getElementById('create-task-form').addEventListener('submit', async (ev
 
     const name = document.getElementById('task-name').value.trim();
     const details = document.getElementById('task-details').value.trim();
+    const date = document.getElementById('task-due').value;
 
-    if (name) {
+    if (name && details && date) {
         const response = await fetch('/create-task/save', {
             method: 'POST',
-            body: JSON.stringify({ name, details }),
+            body: JSON.stringify({ name, details, date }),
             headers: { 'Content-Type': 'application/json' },
         });
 

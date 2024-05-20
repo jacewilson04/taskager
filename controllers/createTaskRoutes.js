@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
 
 router.post('/save', async(req, res)=> {
     try{
-        const {name, details} = req.body;
+        const {name, details, date} = req.body;
         const user_id = req.session.user_id; 
         
         if(!name || !user_id){
@@ -17,6 +17,7 @@ router.post('/save', async(req, res)=> {
         const newTask = await Task.create({
             name,
             details,
+            date,
             user_id,
         });
 

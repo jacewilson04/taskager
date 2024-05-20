@@ -146,7 +146,7 @@ router.delete('/delete/:id', withAuth, async (req, res) => {
     try {
       const taskId = req.params.id;
       const userId = req.session.user_id;
-      const { name, details } = req.body;
+      const { name, details, date } = req.body;
   
       const task = await Task.findOne({
         where: {
@@ -162,6 +162,7 @@ router.delete('/delete/:id', withAuth, async (req, res) => {
   
       task.name = name;
       task.details = details;
+      task.date = date;
       await task.save();
   
       res.status(200).json({ message: 'Task updated successfully' });
