@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { Task } = require('../models');
 const withAuth = require('../utils/auth');
 const moment= require('moment') 
+
 // Render the homepage with tasks
 router.get('/', withAuth, async (req, res) => {
   try {
@@ -46,6 +47,7 @@ router.get('/update-task/:id', withAuth, async (req, res) => {
   }
 });
 
+// Only load the tasks within the current week
 router.get('/view-week', withAuth, async (req, res) => {
   try{
     const user_id = req.session.user_id;
@@ -71,6 +73,7 @@ router.get('/view-week', withAuth, async (req, res) => {
   }
 });
 
+// Only load the tasks within the current month
 router.get ('/view-month', withAuth, async (req, res) => {
   try{
     const user_id = req.session.user_id;
@@ -97,6 +100,7 @@ router.get ('/view-month', withAuth, async (req, res) => {
   }
 });
 
+// Only load the tasks within the current year
 router.get ('/view-year', withAuth, async (req, res) => {
   try{
     const user_id = req.session.user_id;
@@ -131,4 +135,5 @@ router.get('/login', (req, res) => {
 
   res.render('login');
 });
+
 module.exports = router;

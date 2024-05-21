@@ -18,7 +18,12 @@ const loginFormHandler = async (event) => {
     }
   }
 };
- const createNewAccount = async (event) =>{
+
+document
+  .querySelector('.login-form')
+  .addEventListener('submit', loginFormHandler);
+
+const createNewAccount = async (event) =>{
   event.preventDefault();
 
   const email = document.querySelector('#email-login').value.trim();
@@ -38,9 +43,6 @@ const loginFormHandler = async (event) => {
     }
   }
 }
-document
-  .querySelector('.login-form')
-  .addEventListener('submit', loginFormHandler);
 
 document
   .querySelector('#create-new-account')

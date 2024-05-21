@@ -5,6 +5,7 @@ router.get('/', (req, res) => {
     res.render('createtask');
 });
 
+// Creates a new task for the user and adds it to the database
 router.post('/save', async(req, res)=> {
     try{
         const {name, details, date} = req.body;
